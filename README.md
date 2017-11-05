@@ -8,6 +8,10 @@ $ createdb thinkingcap
 $ fab install_reqs
 $ fab init_db
 ```
+create settings.py
+```
+$ cp config/settings.example.py config/settings.py
+```
 
 if you would like to make a new app:
 ```
