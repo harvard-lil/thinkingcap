@@ -23,7 +23,7 @@ $ ./manage.py shell
 ```
 In your shell
 ```python
-# colors live in colors/colors.py if you want to edit them 
+# colors live in config/settings.py if you want to edit them 
 from colors import resources
 from django.conf import settings
 resources.create_colors(settings.COLOR_LIST)
