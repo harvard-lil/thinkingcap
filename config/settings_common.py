@@ -135,7 +135,9 @@ API_BASE_URL = "http://localhost:8000/api/v1/"
 #     APP SPECIFIC KEYS    #
 # ======================== #
 
-## colors
+#          colors
+# ==========================
+# API TOKEN used for colors app
 API_TOKEN_COLORS = '123'
 API_LIMIT_COLORS = 500
 
@@ -151,5 +153,6 @@ COLOR_LIST = [
     "Spring bud","Spring green","Tan","Taupe","Teal","Turquoise","Violet","Viridian","White","Yankees Blue","Yellow"
 ]
 
-## onthisday
+#        onthisday
+# ==========================
 API_TOKEN_ONTHISDAY = '456'
