@@ -125,11 +125,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+# ======================== #
+#           EMAIL          #
+# ======================== #
+ADMIN_EMAIL_ADDRESS = 'main-email-address@example.com'
+EMAIL_ADDRESS = 'admin-email-address@example.com'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 25
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST_PASSWORD = '123'
+EMAIL_HOST_USER = 'user-secret'
+EMAIL_HOST_PASSWORD = 'secret-secret'
+
 
 # ======================== #
 #       API SETTINGS       #
 # ======================== #
 API_BASE_URL = "http://localhost:8000/api/v1/"
+
 
 # ======================== #
 #     APP SPECIFIC KEYS    #
@@ -156,3 +171,5 @@ COLOR_LIST = [
 #        onthisday
 # ==========================
 API_TOKEN_ONTHISDAY = '456'
+START_YEAR_ONTHISDAY = 1650
+EMAIL_ONTHISDAY = 'example@gmail.com'
