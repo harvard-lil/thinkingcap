@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from colors import urls as colors_urls
+from onthisday import urls as onthisday_urls
 from . import urls
 
 urlpatterns = [

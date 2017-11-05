@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'onthisday',
-
+    'colors',
 ]
 
 MIDDLEWARE = [
@@ -77,9 +77,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'thinkingcap',
+        'USER': 'postgres',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '',
+    },
+
 }
 
 
@@ -120,3 +125,34 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# ======================== #
+#       API SETTINGS       #
+# ======================== #
+API_BASE_URL = "http://localhost:8000/api/v1/"
+
+# ======================== #
+#     APP SPECIFIC KEYS    #
+# ======================== #
+
+#          colors
+# ==========================
+# API TOKEN used for colors app
+API_TOKEN_COLORS = '123'
+API_LIMIT_COLORS = 500
+
+# taken from https://simple.wikipedia.org/wiki/List_of_colors
+COLOR_LIST = [
+    "Amaranth","Amber","Amethyst","Apricot","Aquamarine","Azure","Baby blue","Beige","Black","Blue","Blue-green",
+    "Blue-violet","Blush","Bronze","Brown","Burgundy","Byzantium","Carmine","Cerise","Cerulean","Champagne",
+    "Chartreuse green","Chocolate","Cobalt blue","Coffee","Copper","Coral","Crimson","Cyan","Desert sand",
+    "Electric blue","Emerald","Erin","Gold","Gray","Green","Harlequin","Indigo","Ivory","Jade","Jungle green",
+    "Lavender","Lemon","Lilac","Lime","Magenta","Magenta rose","Maroon","Mauve","Navy blue","Ocher","Olive","Orange",
+    "Orange-red","Orchid","Peach","Pear","Periwinkle","Persian blue","Pink","Plum","Prussian blue","Puce","Purple",
+    "Raspberry","Red","Red-violet","Rose","Ruby","Salmon","Sangria","Sapphire","Scarlet","Silver","Slate gray",
+    "Spring bud","Spring green","Tan","Taupe","Teal","Turquoise","Violet","Viridian","White","Yankees Blue","Yellow"
+]
+
+#        onthisday
+# ==========================
+API_TOKEN_ONTHISDAY = '456'
