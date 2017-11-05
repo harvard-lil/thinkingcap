@@ -3,6 +3,7 @@ import django
 
 # set up Django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+
 try:
     django.setup()
 except Exception as e:
@@ -16,6 +17,12 @@ from fabric.decorators import task
 def run_django():
     local("python manage.py runserver")
 
+
+@task
+def install_reqs():
+    local("pip install -r requirements.txt")
+
+
 @task
 def init_db():
     """
@@ -23,3 +30,4 @@ def init_db():
     """
     local("python manage.py makemigrations")
     local("python manage.py migrate")
+
