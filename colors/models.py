@@ -14,6 +14,7 @@ class ColorCase(models.Model):
     name = models.TextField(blank=True)
     name_abbreviation = models.CharField(max_length=255, blank=True)
     decision_date = models.DateField(null=True, blank=True)
+    url = models.URLField(blank=True)
 
     def __str__(self):
         return self.slug

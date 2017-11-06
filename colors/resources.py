@@ -12,6 +12,7 @@ base_dir = 'colors/tmp/'
 if not os.path.exists(base_dir):
     os.mkdir(base_dir)
 
+
 def create_API_settings():
     new_settings = APISettings.objects.create(limit=settings.API_LIMIT_COLORS)
     new_settings.save()
@@ -66,6 +67,8 @@ def xml_to_list(xml_str):
 
     # remove any nonalphanumeric characters
     text = re.sub(r'\W+', ' ', text)
+    # text = re.sub(r'(?!-)\W+', ' ', text)
+
     return text.lower().split(' ')
 
 
@@ -77,6 +80,7 @@ def create_if_colors_in_case(json_case):
         case, created = ColorCase.objects.get_or_create(
             slug=json_case['slug'],
             name=json_case['name'],
+            url=json_case['url'],
             name_abbreviation=json_case['name_abbreviation'],
             decision_date=json_case['decision_date'])
 

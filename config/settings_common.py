@@ -158,14 +158,14 @@ API_LIMIT_COLORS = 500
 
 # taken from https://simple.wikipedia.org/wiki/List_of_colors
 COLOR_LIST = [
-    "Amaranth","Amber","Amethyst","Apricot","Aquamarine","Azure","Baby blue","Beige","Black","Blue","Blue-green",
-    "Blue-violet","Blush","Bronze","Brown","Burgundy","Byzantium","Carmine","Cerise","Cerulean","Champagne",
-    "Chartreuse green","Chocolate","Cobalt blue","Coffee","Copper","Coral","Crimson","Cyan","Desert sand",
-    "Electric blue","Emerald","Erin","Gold","Gray","Green","Harlequin","Indigo","Ivory","Jade","Jungle green",
-    "Lavender","Lemon","Lilac","Lime","Magenta","Magenta rose","Maroon","Mauve","Navy blue","Ocher","Olive","Orange",
-    "Orange-red","Orchid","Peach","Pear","Periwinkle","Persian blue","Pink","Plum","Prussian blue","Puce","Purple",
-    "Raspberry","Red","Red-violet","Rose","Ruby","Salmon","Sangria","Sapphire","Scarlet","Silver","Slate gray",
-    "Spring bud","Spring green","Tan","Taupe","Teal","Turquoise","Violet","Viridian","White","Yankees Blue","Yellow"
+    "amaranth", "amber", "amethyst", "apricot", "aquamarine", "azure", "baby blue", "beige", "black", "blue", "blue green",
+    "blue violet", "blush", "bronze", "brown", "burgundy", "byzantium", "carmine", "cerise", "cerulean", "champagne",
+    "chartreuse green", "chocolate", "cobalt blue", "coffee", "copper", "coral", "crimson", "cyan", "desert sand",
+    "electric blue", "emerald", "erin", "gold", "gray", "green", "harlequin", "indigo", "ivory", "jade", "jungle green",
+    "lavender", "lemon", "lilac", "lime", "magenta", "magenta rose", "maroon", "mauve", "navy blue", "ocher", "olive", "orange",
+    "orange red", "orchid", "peach", "pear", "periwinkle", "persian blue", "pink", "plum", "prussian blue", "puce", "purple",
+    "raspberry", "red", "red violet", "rose", "ruby", "salmon", "sangria", "sapphire", "scarlet", "silver", "slate gray",
+    "spring bud", "spring green", "tan", "taupe", "teal", "turquoise", "violet", "viridian", "white", "yankees blue", "yellow"
 ]
 
 #        onthisday

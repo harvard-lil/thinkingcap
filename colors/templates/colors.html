@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="{% static "css/colors.css" %}" />
+</head>
+<body>
+
+ {% for case in cases %}
+    <!--<pre>{{case}}</pre>-->
+    {% for color in case.colors.all %}
+       <div    onclick="gotocase('{{case.url}}')"
+               class="color-pixel tooltip color-{{color.value|safe}}"
+               style="width: 10px; height: 10px;">
+         <span class="tooltiptext">{{case.name_abbreviation}}<br/>{{case.decision_date}}</span>
+       </div>
+
+    {% endfor %}
+ {% endfor %}
+</body>
+<script>
+
+  function gotocase(url) {
+    window.open(url, "_blank")
+  }
+
+function calculatePixelSize(colorCount) {
+  var width = window.innerWidth;
+  return (width / colorCount).toString();
+}
+//var color_size = calculatePixelSize("{{color_count}}");
+</script>
+</html>

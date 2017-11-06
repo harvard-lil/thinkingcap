@@ -22,4 +22,5 @@ from . import urls
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # url(r'^', include(urls)),
+    url(r'^colors/', include(colors_urls)),
 ]
