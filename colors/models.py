@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 
 
 class Color(models.Model):
@@ -8,15 +9,29 @@ class Color(models.Model):
         return self.value
 
 
-class ColorCase(models.Model):
-    colors = models.ManyToManyField('Color', related_name='colorcase')
-    slug = models.SlugField(blank=True, null=True)
+class Case(models.Model):
+    slug = models.SlugField(primary_key=True, unique=True)
     name = models.TextField(blank=True)
     name_abbreviation = models.CharField(max_length=255, blank=True)
     decision_date = models.DateField(null=True, blank=True)
+    url = models.URLField(blank=True)
 
     def __str__(self):
         return self.slug
+
+
+class ColorExcerpt(models.Model):
+    color = models.ForeignKey('Color', blank=True, null=True)
+    context_before = models.TextField()
+    original_word = models.CharField(max_length=100, blank=True, null=True)
+    context_after = models.TextField()
+    votes = ArrayField(models.CharField(max_length=10, blank=True, null=True), size=2)
+    is_color = models.BooleanField(default=False)
+    to_check = models.BooleanField(default=True)
+    case = models.ForeignKey('Case', related_name='colorexcerpt')
+
+    def __str__(self):
+        return self.context_before + ' ' + self.original_word + ' ' + self.context_after
 
 
 class APISettings(models.Model):

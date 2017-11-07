@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="{% static "css/colors.css" %}" />
+</head>
+<body>
+
+ {% for obj in objects %}
+       <div    onclick="gotocase('{{obj.case.url}}')"
+               class="color-pixel tooltip color-{{obj.color.value|safe}}">
+         <span class="tooltiptext">{{ obj.case.name_abbreviation }}
+           <br/>
+           <hr/>
+           <em>"{{ obj.context_before }} <b>{{ obj.original_word }}</b> {{ obj.context_after }}"</em>
+           <br/>
+           <hr/>{{ obj.case.decision_date }}
+         </span>
+       </div>
+ {% endfor %}
+</body>
+<script>
+
+function gotocase(url) {
+  window.open(url, "_blank")
+}
+
+</script>
+</html>
