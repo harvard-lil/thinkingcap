@@ -14,6 +14,7 @@ if not os.path.exists(base_dir):
 
 
 def create_API_settings():
+    # TODO: rethink logic
     new_settings = APISettings.objects.create(limit=settings.API_LIMIT_COLORS)
     new_settings.save()
 
@@ -40,25 +41,25 @@ def get_next_batch():
         zip_ref = zipfile.ZipFile(gzipped_filename, 'r')
         zip_ref.extractall(base_dir)
         zip_ref.close()
-
-        for root, dirs, files in os.walk(base_dir):
-            for name in files:
-                if '.json' in name:
-                    json_filename = os.path.join(root, name)
-                    with open(json_filename) as fr:
-                        json_obj = json.loads(fr.read())
-                        create_if_colors_in_case(json_obj)
-                    print("removing json file:", json_filename)
-                    os.remove(json_filename)
-
-        print("removing zipped file", gzipped_filename)
+        iterate_and_create(base_dir)
         os.remove(gzipped_filename)
 
         # create new settings entry for debugging purposes
         APISettings.create_with_update(last_api_settings)
     else:
-        print("Something happened, got %s status code:" % response.status_code, "content:", response.content, "reason:", response.reason)
+        print("Something happened, got %s status code:" % response.status_code, "reason:", response.reason)
         return
+
+
+def iterate_and_create(base_dir):
+    for root, dirs, files in os.walk(base_dir):
+        for name in files:
+            if '.json' in name:
+                json_filename = os.path.join(root, name)
+                with open(json_filename) as fr:
+                    json_obj = json.loads(fr.read())
+                    create_pending(json_obj)
+                os.remove(json_filename)
 
 
 def xml_to_list(xml_str):
@@ -70,6 +71,44 @@ def xml_to_list(xml_str):
     # text = re.sub(r'(?!-)\W+', ' ', text)
 
     return text.lower().split(' ')
+
+
+def create_pending(json_case):
+    text = re.sub('<[^<]+?>', '', str(json_case['casebody']))
+    split_text = text.split()
+    colors_list = list(Color.objects.values_list('value', flat=True))
+    for idx, entity in enumerate(split_text):
+        if entity[0] == entity[0].upper():
+            # if uppercase, if not following a period
+            # most likely a name. continue
+            if not idx == 0 and idx > 1 and not split_text[idx-2] == '.':
+                continue
+        word = re.sub(r'(?!-)\W+', ' ', entity).lower()
+
+        if word in colors_list:
+            pending_case = PendingColorCase(
+                color=Color.objects.get(value=word),
+                slug=json_case['slug'],
+                name=json_case['name'],
+                name_abbreviation=json_case['name_abbreviation'],
+                decision_date=json_case['decision_date'],
+                url=json_case['url'],
+                original_word=entity,
+            )
+            pending_case.hide = False
+            # capture context before and after
+            try:
+                pending_case.context_before = ' '.join(split_text[idx-5:idx])
+            except IndexError:
+                pending_case.context_before = ' '.join(split_text[0:idx])
+            try:
+                pending_case.context_after = ' '.join(split_text[idx + 1::idx+5])
+            except IndexError:
+                pending_case.context_after = ' '.join(split_text[idx + 1::])
+            # check each entity against a list of colors
+            # if entity in colors, create
+            pending_case.votes = []
+            pending_case.save()
 
 
 def create_if_colors_in_case(json_case):

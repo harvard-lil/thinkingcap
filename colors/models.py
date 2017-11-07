@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 
 
 class Color(models.Model):
@@ -6,6 +7,24 @@ class Color(models.Model):
 
     def __str__(self):
         return self.value
+
+
+class PendingColorCase(models.Model):
+    color = models.ForeignKey('Color', blank=True, null=True)
+    context_before = models.TextField()
+    original_word = models.CharField(max_length=100, blank=True, null=True)
+    context_after = models.TextField()
+    consensus = models.BooleanField(default=False)
+    votes = ArrayField(models.CharField(max_length=10, blank=True, null=True), size=2)
+    slug = models.SlugField(blank=True, null=True)
+    name = models.TextField(blank=True)
+    name_abbreviation = models.CharField(max_length=255, blank=True)
+    decision_date = models.DateField(null=True, blank=True)
+    url = models.URLField(blank=True)
+    hide = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.slug + ": " + str(self.color.value)
 
 
 class ColorCase(models.Model):

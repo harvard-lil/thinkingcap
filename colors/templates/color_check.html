@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="{% static "css/colors.css" %}" />
+  <script src="{% static 'js/check.js' %}"></script>
+</head>
+<body>
+  <form method="POST" id="color-check-form">
+    {% csrf_token %}
+    <h1>Color? Or something else?</h1>
+    <label>press C for color N for nope</label>
+    <p>"...{{ case.context_before }} <span class="pending_color">{{ case.original_word }}</span> {{ case.context_after }}..."</p>
+
+    <input type="hidden" name="case_id" value="{{ case.id }}">
+    <div class="color-square color-{{case.color|safe}}"></div>
+    <ul>
+      <li>
+        <input type="submit" id="confirmed-color" name="is_color" value="color">
+      </li>
+      <li>
+        <input type="submit" id="confirmed-not-color" name="is_color" value="nope">
+      </li>
+    </ul>
+  </form>
+</body>
+</html>
