@@ -8,20 +8,17 @@
 </head>
 <body>
 
- {% for case in cases %}
-      {% if view_type == 'verified'  %}
-        {% for color in case.colors.all %}
-           <div    onclick="gotocase('{{case.url}}')"
-                   class="color-pixel tooltip color-{{color.value|safe}}">
-             <span class="tooltiptext">{{case.name_abbreviation}}<br/>{{case.decision_date}}</span>
-           </div>
-        {% endfor %}
-      {% elif view_type == 'all' %}
-       <div    onclick="gotocase('{{case.url}}')"
-               class="color-pixel tooltip color-{{case.color.value|safe}}">
-         <span class="tooltiptext">{{case.name_abbreviation}}<br/>{{case.decision_date}}</span>
+ {% for obj in objects %}
+       <div    onclick="gotocase('{{obj.case.url}}')"
+               class="color-pixel tooltip color-{{obj.color.value|safe}}">
+         <span class="tooltiptext">{{ obj.case.name_abbreviation }}
+           <br/>
+           <hr/>
+           <em>"{{ obj.context_before }} <b>{{ obj.original_word }}</b> {{ obj.context_after }}"</em>
+           <br/>
+           <hr/>{{ obj.case.decision_date }}
+         </span>
        </div>
-      {% endif %}
  {% endfor %}
 </body>
 <script>

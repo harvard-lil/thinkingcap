@@ -15,7 +15,9 @@
     <p>"...{{ case.context_before }} <span class="pending_color">{{ case.original_word }}</span> {{ case.context_after }}..."</p>
 
     <input type="hidden" name="case_id" value="{{ case.id }}">
-    <div class="color-square color-{{case.color|safe}}"></div>
+    <div class="color-square color-{{ case.color|safe }}"></div>
+    <div id="its-a-color" class="shoutout font-color-{{ case.color|safe }}">COLOR!</div>
+    <div id="its-not-a-color" class="shoutout its-a-color font-color-{{ case.color|safe }}">NOT A COLOR!</div>
     <ul>
       <li>
         <input type="submit" id="confirmed-color" name="is_color" value="color">
@@ -25,5 +27,6 @@
       </li>
     </ul>
   </form>
+
 </body>
 </html>

@@ -17,6 +17,7 @@ def create_API_settings():
     # TODO: rethink logic
     new_settings = APISettings.objects.create(limit=settings.API_LIMIT_COLORS)
     new_settings.save()
+    return new_settings
 
 
 def get_next_batch():
@@ -29,6 +30,9 @@ def get_next_batch():
     removes all files it created
     """
     last_api_settings = APISettings.objects.last()
+    if not last_api_settings:
+        last_api_settings = create_API_settings()
+
     url = os.path.join(settings.API_BASE_URL, 'cases/?limit=%s&offset=%s&type=download' % (last_api_settings.limit, last_api_settings.offset))
     response = requests.get(url, headers={'AUTHORIZATION': 'Token {}'.format(settings.API_TOKEN_COLORS)})
     if response.status_code == 200:
@@ -86,16 +90,19 @@ def create_pending(json_case):
         word = re.sub(r'(?!-)\W+', ' ', entity).lower()
 
         if word in colors_list:
-            pending_case = PendingColorCase(
-                color=Color.objects.get(value=word),
+            case, created = Case.objects.get_or_create(
                 slug=json_case['slug'],
                 name=json_case['name'],
                 name_abbreviation=json_case['name_abbreviation'],
                 decision_date=json_case['decision_date'],
                 url=json_case['url'],
-                original_word=entity,
             )
-            pending_case.hide = False
+            pending_case = ColorExcerpt(
+                color=Color.objects.get(value=word),
+                original_word=entity,
+                case=case,
+            )
+
             # capture context before and after
             try:
                 pending_case.context_before = ' '.join(split_text[idx-5:idx])

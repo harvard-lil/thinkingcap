@@ -1,8 +1,20 @@
 document.onkeydown = function(evt) {
     evt = evt || window.event;
     if (evt.key == 'c') {
-      document.getElementById('confirmed-color').click();
+      var shoutout = document.getElementById('its-a-color');
+      shoutout.style.display = "inline";
+      setTimeout(function(){
+        document.getElementById('confirmed-color').click();
+        shoutout.style.display = "none";
+      }, 500);
+
+
     } else if (evt.key == 'n') {
-      document.getElementById('confirmed-not-color').click();
+      var shoutout = document.getElementById('its-not-a-color');
+      shoutout.style.display = "inline";
+      setTimeout(function(){
+        document.getElementById('confirmed-not-color').click();
+        shoutout.style.display = "none";
+      }, 500);
     }
 };

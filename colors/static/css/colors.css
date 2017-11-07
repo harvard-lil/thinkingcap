@@ -11,6 +11,7 @@ body {
     font-size: 12px;
     visibility: hidden;
     text-align: center;
+    min-width: 100px;
     padding: 5px 0;
     background-color: white;
     position: absolute;
@@ -19,6 +20,10 @@ body {
     border: 1px solid darkgrey;
     padding: 5px;
     z-index: 1;
+}
+
+.tooltip .tooltiptext em {
+    font-weight: normal;
 }
 
 .tooltip:hover .tooltiptext {
@@ -57,6 +62,36 @@ input[type="submit"]:hover, input[type="submit"]:active{
     border-bottom: 1px solid black;
 }
 
+.shoutout {
+    display: none;
+    font-size: 100px;
+    font-weight: bold;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.shoutout#its-a-color {
+    -webkit-transform: rotate(-30deg);
+    -moz-transform: rotate(-30deg);
+    -ms-transform: rotate(-30deg);
+    -o-transform: rotate(-30deg);
+    /* Internet Explorer */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+}
+
+.shoutout#its-not-a-color {
+    -webkit-transform: rotate(30deg);
+    -moz-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    -o-transform: rotate(30deg);
+    /* Internet Explorer */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+}
+
 .color-square {
     width: 100px;
     height: 100px;
@@ -81,90 +116,163 @@ input[type="submit"]:hover, input[type="submit"]:active{
     border: 1px solid black;
 }
 
-.color-amaranth { background-color: #E52B50 }
-.color-amber { background-color: #FFBF00 }
-.color-amethyst { background-color: #9966CC }
-.color-apricot { background-color: #FBCEB1 }
-.color-aquamarine { background-color: #7FFFD4 }
-.color-azure { background-color: #007FFF }
-/*.color-baby { background-color: blue	#89CFF0 }*/
-.color-beige { background-color: #F5F5DC }
-.color-black { background-color: #000000 }
-.color-blue { background-color: #0000FF }
-.color-blue-green { background-color:	#0095B6 }
-/*.color-blue { background-color: -violet	#8A2BE2 }*/
-.color-blush { background-color: #DE5D83 }
-.color-bronze { background-color: #CD7F32 }
-.color-brown { background-color: #964B00 }
-.color-burgundy { background-color: #800020 }
-.color-byzantium { background-color: #702963 }
-.color-carmine { background-color: #960018 }
-.color-cerise { background-color: #DE3163 }
-.color-cerulean { background-color: #007BA7 }
-.color-champagne { background-color: #F7E7CE }
-/*.color-chartreuse { background-color: green	#7FFF00 }*/
-.color-chocolate { background-color: #7B3F00 }
-/*.color-cobalt { background-color: blue	#0047AB }*/
-.color-coffee { background-color: #6F4E37 }
-.color-copper { background-color: #B87333 }
-.color-coral { background-color: #F88379 }
-.color-crimson { background-color: #DC143C }
-.color-cyan { background-color: #00FFFF }
-/*.color-desert { background-color: sand	#EDC9AF }*/
-/*.color-electric { background-color: blue	#7DF9FF }*/
-.color-emerald { background-color: #50C878 }
-.color-erin { background-color: #00FF3F }
-.color-gold { background-color: #FFD700 }
-.color-gray { background-color: #808080 }
-.color-green { background-color: #00FF00 }
-.color-harlequin { background-color: #3FFF00 }
-.color-indigo { background-color: #4B0082 }
-.color-ivory { background-color: #FFFFF0 }
-.color-jade { background-color: #00A86B }
-/*.color-jungle { background-color: green	#29AB87 }*/
-.color-lavender { background-color: #B57EDC }
-.color-lemon { background-color: #FFF700 }
-.color-lilac { background-color: #C8A2C8 }
-.color-lime { background-color: #BFFF00 }
-.color-magenta { background-color: #FF00FF }
-/*.color-magenta { background-color: rose	#FF00AF }*/
-.color-maroon { background-color: #800000 }
-.color-mauve { background-color: #E0B0FF }
-/*.color-navy { background-color: blue	#000080 }*/
-.color-ocher { background-color: #CC7722 }
-.color-olive { background-color: #808000 }
-.color-orange { background-color: #FFA500 }
-/*.color-orange { background-color: -red	#FF4500 }*/
-.color-orchid { background-color: #DA70D6 }
-.color-peach { background-color: #FFE5B4 }
-.color-pear { background-color: #D1E231 }
-.color-periwinkle { background-color: #CCCCFF }
-/*.color-persian { background-color: blue	#1C39BB }*/
-.color-pink { background-color: #FFC0CB }
-.color-plum { background-color: #8E4585 }
-/*.color-prussian { background-color: blue	#003153 }*/
-.color-puce { background-color: #CC8899 }
-.color-purple { background-color: #800080 }
-.color-raspberry { background-color: #E30B5C }
-.color-red { background-color: #FF0000 }
-/*.color-red { background-color: -violet	#C71585 }*/
-.color-rose { background-color: #FF007F }
-.color-ruby { background-color: #E0115F }
-.color-salmon { background-color: #FA8072 }
-.color-sangria { background-color: #92000A }
-.color-sapphire { background-color: #0F52BA }
-.color-scarlet { background-color: #FF2400 }
-.color-silver { background-color: #C0C0C0 }
-/*.color-slate { background-color: gray	#708090 }*/
-/*.color-spring { background-color: bud	#A7FC00 }*/
-/*.color-spring { background-color: green	#00FF7F }*/
-.color-tan { background-color: #D2B48C }
-.color-taupe { background-color: #483C32 }
-.color-teal { background-color: #008080 }
-.color-turquoise { background-color: #40E0D0 }
-.color-violet { background-color: #EE82EE }
-.color-viridian { background-color: #40826D }
+.color-amaranth { background-color: #E52B50; }
+.color-amber { background-color: #FFBF00; }
+.color-amethyst { background-color: #9966CC; }
+.color-apricot { background-color: #FBCEB1; }
+.color-aquamarine { background-color: #7FFFD4; }
+.color-azure { background-color: #007FFF; }
+/*.color-baby { background-color: blue	#89CFF0 };*/
+.color-beige { background-color: #F5F5DC; }
+.color-black { background-color: #000000; }
+.color-blue { background-color: #0000FF; }
+.color-blue-green { background-color:	#0095B6; }
+/*.color-blue { background-color: -violet	#8A2BE2 };*/
+.color-blush { background-color: #DE5D83; }
+.color-bronze { background-color: #CD7F32; }
+.color-brown { background-color: #964B00; }
+.color-burgundy { background-color: #800020; }
+.color-byzantium { background-color: #702963; }
+.color-carmine { background-color: #960018; }
+.color-cerise { background-color: #DE3163; }
+.color-cerulean { background-color: #007BA7; }
+.color-champagne { background-color: #F7E7CE; }
+/*.color-chartreuse { background-color: green	#7FFF00 };*/
+.color-chocolate { background-color: #7B3F00; }
+/*.color-cobalt { background-color: blue	#0047AB };*/
+.color-coffee { background-color: #6F4E37; }
+.color-copper { background-color: #B87333; }
+.color-coral { background-color: #F88379; }
+.color-crimson { background-color: #DC143C; }
+.color-cyan { background-color: #00FFFF; }
+/*.color-desert { background-color: sand	#EDC9AF };*/
+/*.color-electric { background-color: blue	#7DF9FF };*/
+.color-emerald { background-color: #50C878; }
+.color-erin { background-color: #00FF3F; }
+.color-gold { background-color: #FFD700; }
+.color-gray { background-color: #808080; }
+.color-green { background-color: #00FF00; }
+.color-harlequin { background-color: #3FFF00; }
+.color-indigo { background-color: #4B0082; }
+.color-ivory { background-color: #FFFFF0; }
+.color-jade { background-color: #00A86B; }
+/*.color-jungle { background-color: green	#29AB87 };*/
+.color-lavender { background-color: #B57EDC; }
+.color-lemon { background-color: #FFF700; }
+.color-lilac { background-color: #C8A2C8; }
+.color-lime { background-color: #BFFF00; }
+.color-magenta { background-color: #FF00FF; }
+/*.color-magenta { background-color: rose	#FF00AF };*/
+.color-maroon { background-color: #800000; }
+.color-mauve { background-color: #E0B0FF; }
+/*.color-navy { background-color: blue	#000080 };*/
+.color-ocher { background-color: #CC7722; }
+.color-olive { background-color: #808000; }
+.color-orange { background-color: #FFA500; }
+/*.color-orange { background-color: -red	#FF4500 };*/
+.color-orchid { background-color: #DA70D6; }
+.color-peach { background-color: #FFE5B4; }
+.color-pear { background-color: #D1E231; }
+.color-periwinkle { background-color: #CCCCFF; }
+/*.color-persian { background-color: blue	#1C39BB };*/
+.color-pink { background-color: #FFC0CB; }
+.color-plum { background-color: #8E4585; }
+/*.color-prussian { background-color: blue	#003153 };*/
+.color-puce { background-color: #CC8899; }
+.color-purple { background-color: #800080; }
+.color-raspberry { background-color: #E30B5C; }
+.color-red { background-color: #FF0000; }
+/*.color-red { background-color: -violet	#C71585 };*/
+.color-rose { background-color: #FF007F; }
+.color-ruby { background-color: #E0115F; }
+.color-salmon { background-color: #FA8072; }
+.color-sangria { background-color: #92000A; }
+.color-sapphire { background-color: #0F52BA; }
+.color-scarlet { background-color: #FF2400; }
+.color-silver { background-color: #C0C0C0; }
+/*.color-slate { background-color: gray	#708090 };*/
+/*.color-spring { background-color: bud	#A7FC00 };*/
+/*.color-spring { background-color: green	#00FF7F };*/
+.color-tan { background-color: #D2B48C; }
+.color-taupe { background-color: #483C32; }
+.color-teal { background-color: #008080; }
+.color-turquoise { background-color: #40E0D0; }
+.color-violet { background-color: #EE82EE; }
+.color-viridian { background-color: #40826D; }
 .color-white { background-color: #FFFFFF; border: 1px solid black; }
-/*.color-yankees { background-color:	#1C2841 }*/
-.color-yellow { background-color: #FFFF00 }
+/*.color-yankees { background-color:	#1C2841 };*/
+.color-yellow { background-color: #FFFF00; }
+
+
+
+.font-color-amaranth { color: #E52B50; }
+.font-color-amber { color: #FFBF00; }
+.font-color-amethyst { color: #9966CC; }
+.font-color-apricot { color: #FBCEB1; }
+.font-color-aquamarine { color: #7FFFD4; }
+.font-color-azure { color: #007FFF; }
+.font-color-beige { color: #F5F5DC; }
+.font-color-black { color: #000000; }
+.font-color-blue { color: #0000FF; }
+.font-color-blush { color: #DE5D83; }
+.font-color-bronze { color: #CD7F32; }
+.font-color-brown { color: #964B00; }
+.font-color-burgundy { color: #800020; }
+.font-color-byzantium { color: #702963; }
+.font-color-carmine { color: #960018; }
+.font-color-cerise { color: #DE3163; }
+.font-color-cerulean { color: #007BA7; }
+.font-color-champagne { color: #F7E7CE; }
+.font-color-chocolate { color: #7B3F00; }
+.font-color-coffee { color: #6F4E37; }
+.font-color-copper { color: #B87333; }
+.font-color-coral { color: #F88379; }
+.font-color-crimson { color: #DC143C; }
+.font-color-cyan { color: #00FFFF; }
+.font-color-emerald { color: #50C878; }
+.font-color-erin { color: #00FF3F; }
+.font-color-gold { color: #FFD700; }
+.font-color-gray { color: #808080; }
+.font-color-green { color: #00FF00; }
+.font-color-harlequin { color: #3FFF00; }
+.font-color-indigo { color: #4B0082; }
+.font-color-ivory { color: #FFFFF0; }
+.font-color-jade { color: #00A86B; }
+.font-color-lavender { color: #B57EDC; }
+.font-color-lemon { color: #FFF700; }
+.font-color-lilac { color: #C8A2C8; }
+.font-color-lime { color: #BFFF00; }
+.font-color-magenta { color: #FF00FF; }
+.font-color-maroon { color: #800000; }
+.font-color-mauve { color: #E0B0FF; }
+.font-color-ocher { color: #CC7722; }
+.font-color-olive { color: #808000; }
+.font-color-orange { color: #FFA500; }
+.font-color-orchid { color: #DA70D6; }
+.font-color-peach { color: #FFE5B4; }
+.font-color-pear { color: #D1E231; }
+.font-color-periwinkle { color: #CCCCFF; }
+.font-color-pink { color: #FFC0CB; }
+.font-color-plum { color: #8E4585; }
+.font-color-puce { color: #CC8899; }
+.font-color-purple { color: #800080; }
+.font-color-raspberry { color: #E30B5C; }
+.font-color-red { color: #FF0000; }
+.font-color-rose { color: #FF007F; }
+.font-color-ruby { color: #E0115F; }
+.font-color-salmon { color: #FA8072; }
+.font-color-sangria { color: #92000A; }
+.font-color-sapphire { color: #0F52BA; }
+.font-color-scarlet { color: #FF2400; }
+.font-color-silver { color: #C0C0C0; }
+.font-color-tan { color: #D2B48C; }
+.font-color-taupe { color: #483C32; }
+.font-color-teal { color: #008080; }
+.font-color-turquoise { color: #40E0D0; }
+.font-color-violet { color: #EE82EE; }
+.font-color-viridian { color: #40826D; }
+.font-color-white { color: #FFFFFF;
+    -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: black; }
+.font-color-yellow { color: #FFFF00; }
 
