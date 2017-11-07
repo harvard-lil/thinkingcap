@@ -11,7 +11,7 @@ def color_pixel(request):
     but it's more fun to play with more colors right now
     """
     if request.GET.get('type', '') == 'verified':
-        objects = ColorExcerpt.objects.all(is_color=True)
+        objects = ColorExcerpt.objects.filter(is_color=True)
         view_type = 'verified'
     else:
         objects = ColorExcerpt.objects.all()
