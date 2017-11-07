@@ -12,15 +12,13 @@
       {% if view_type == 'verified'  %}
         {% for color in case.colors.all %}
            <div    onclick="gotocase('{{case.url}}')"
-                   class="color-pixel tooltip color-{{color.value|safe}}"
-                   style="width: 10px; height: 10px;">
+                   class="color-pixel tooltip color-{{color.value|safe}}">
              <span class="tooltiptext">{{case.name_abbreviation}}<br/>{{case.decision_date}}</span>
            </div>
         {% endfor %}
       {% elif view_type == 'all' %}
        <div    onclick="gotocase('{{case.url}}')"
-               class="color-pixel tooltip color-{{case.color.value|safe}}"
-               style="width: 10px; height: 10px;">
+               class="color-pixel tooltip color-{{case.color.value|safe}}">
          <span class="tooltiptext">{{case.name_abbreviation}}<br/>{{case.decision_date}}</span>
        </div>
       {% endif %}

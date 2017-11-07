@@ -49,6 +49,7 @@ input[type="submit"] {
     cursor: pointer;
     border-radius: 0px;
 }
+
 input[type="submit"]:hover, input[type="submit"]:active{
     background-color: lightskyblue;
 }
@@ -66,7 +67,18 @@ input[type="submit"]:hover, input[type="submit"]:active{
     float: left;
     border: 0px !important;
     cursor: pointer;
+    height: 10px;
+    width: 10px;
+}
 
+.color-pixel:hover {
+    width: 12px;
+    height: 12px;
+    left: -2px;
+}
+
+.color-pixel.color-white:hover {
+    border: 1px solid black;
 }
 
 .color-amaranth { background-color: #E52B50 }
