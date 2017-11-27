@@ -99,11 +99,13 @@ input[type="submit"]:hover, input[type="submit"]:active{
 }
 
 .color-pixel {
-    float: left;
     border: 0px !important;
     cursor: pointer;
     height: 10px;
     width: 10px;
+}
+.color-pixel.color-white {
+    border: 1px solid gray !important;
 }
 
 .color-pixel:hover {

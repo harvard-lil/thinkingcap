@@ -144,7 +144,10 @@ EMAIL_HOST_PASSWORD = 'secret-secret'
 #       API SETTINGS       #
 # ======================== #
 API_BASE_URL = "http://localhost:8000/api/v1/"
-
+# until we open up the api to everyone, we need to pass in a certificate with every prod request
+API_CERT_REQUIRED = False
+API_PEM_CERT = "cert.pem"
+API_PEM_KEY = "key.pem"
 
 # ======================== #
 #     APP SPECIFIC KEYS    #
