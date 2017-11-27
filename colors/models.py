@@ -39,7 +39,7 @@ class APISettings(models.Model):
     Keeping a log of all the offsets/limits used
     If we have multiple users, potentially makes sense to expand
     would need to add APIToken at least, and maybe a URLField for the query used
-    If not, maynbe ought to be moved out, maybe written to disk in a file
+    If not, maybe ought to be moved out, maybe written to disk in a file
     """
     limit = models.IntegerField(default=0)
     offset = models.IntegerField(default=0)
