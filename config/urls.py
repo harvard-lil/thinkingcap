@@ -17,10 +17,9 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from colors import urls as colors_urls
 from onthisday import urls as onthisday_urls
-from . import urls
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    # url(r'^admin/', admin.site.urls),
     # url(r'^', include(urls)),
     url(r'^colors/', include(colors_urls)),
 ]
