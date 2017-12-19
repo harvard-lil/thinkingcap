@@ -4,9 +4,14 @@ import requests
 import json
 import zipfile
 import re
+import nltk
 
 from django.conf import settings
+
 from colors.models import *
+
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
 
 base_dir = 'colors/tmp/'
 if not os.path.exists(base_dir):
@@ -34,7 +39,16 @@ def get_next_batch():
         last_api_settings = create_API_settings()
 
     url = os.path.join(settings.API_BASE_URL, 'cases/?limit=%s&offset=%s&type=download' % (last_api_settings.limit, last_api_settings.offset))
-    response = requests.get(url, headers={'AUTHORIZATION': 'Token {}'.format(settings.API_TOKEN_COLORS)})
+    headers = {'AUTHORIZATION': 'Token {}'.format(settings.API_TOKEN_COLORS)}
+
+    # certificate required if we want to interact with the prod api (for now)
+    if settings.API_CERT_REQUIRED:
+        cert = (settings.API_PEM_CERT, settings.API_PEM_KEY)
+    else:
+        cert = ()
+
+    response = requests.get(url, headers=headers, cert=cert)
+
     if response.status_code == 200:
         filename = cgi.parse_header(response.headers['Content-Disposition'])[1]['filename']
         gzipped_filename = base_dir + filename
@@ -79,17 +93,17 @@ def xml_to_list(xml_str):
 
 def create_pending(json_case):
     text = re.sub('<[^<]+?>', '', str(json_case['casebody']))
-    split_text = text.split()
+    text = " ".join(text.split())
     colors_list = list(Color.objects.values_list('value', flat=True))
-    for idx, entity in enumerate(split_text):
-        if entity[0] == entity[0].upper():
-            # if uppercase, if not following a period
-            # most likely a name. continue
-            if not idx == 0 and idx > 1 and not split_text[idx-2] == '.':
-                continue
-        word = re.sub(r'(?!-)\W+', ' ', entity).lower()
 
-        if word in colors_list:
+    tokens = nltk.word_tokenize(text)
+
+    # tagging all tokens with parts of speech
+    tagged = nltk.pos_tag(tokens)
+
+    for idx, tagged_word in enumerate(tagged):
+        value, tag = tagged_word
+        if tag == 'JJ' and value.lower() in colors_list:
             case, created = Case.objects.get_or_create(
                 slug=json_case['slug'],
                 name=json_case['name'],
@@ -98,20 +112,20 @@ def create_pending(json_case):
                 url=json_case['url'],
             )
             pending_case = ColorExcerpt(
-                color=Color.objects.get(value=word),
-                original_word=entity,
+                color=Color.objects.get(value=value.lower()),
+                original_word=value,
                 case=case,
             )
 
             # capture context before and after
             try:
-                pending_case.context_before = ' '.join(split_text[idx-5:idx])
+                pending_case.context_before = ' '.join(tokens[idx-5:idx])
             except IndexError:
-                pending_case.context_before = ' '.join(split_text[0:idx])
+                pending_case.context_before = ' '.join(tokens[0:idx])
             try:
-                pending_case.context_after = ' '.join(split_text[idx + 1::idx+5])
+                pending_case.context_after = ' '.join(tokens[idx + 1::idx+5])
             except IndexError:
-                pending_case.context_after = ' '.join(split_text[idx + 1::])
+                pending_case.context_after = ' '.join(tokens[idx + 1::])
             # check each entity against a list of colors
             # if entity in colors, create
             pending_case.votes = []

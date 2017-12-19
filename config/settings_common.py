@@ -124,7 +124,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
+
 # ======================== #
 #           EMAIL          #
 # ======================== #
@@ -144,7 +153,10 @@ EMAIL_HOST_PASSWORD = 'secret-secret'
 #       API SETTINGS       #
 # ======================== #
 API_BASE_URL = "http://localhost:8000/api/v1/"
-
+# until we open up the api to everyone, we need to pass in a certificate with every prod request
+API_CERT_REQUIRED = False
+API_PEM_CERT = "cert.pem"
+API_PEM_KEY = "key.pem"
 
 # ======================== #
 #     APP SPECIFIC KEYS    #
